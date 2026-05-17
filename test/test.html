@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>テスト一覧</title>
+  <style>
+    body { font-family: monospace; padding: 24px; background: #1e1e1e; color: #ccc; }
+    h1 { color: #fff; margin-bottom: 8px; }
+    .links { margin-bottom: 24px; font-size: 13px; }
+    .links a { color: #4a90d9; margin-right: 16px; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+    h2 { color: #aaa; margin: 24px 0 8px; font-size: 14px; text-transform: uppercase; }
+    .pass { color: #4ec94e; }
+    .fail { color: #e55; }
+    #summary { margin-top: 24px; font-size: 16px; font-weight: bold; }
+    #app { display: none; }
+  </style>
+</head>
+<body>
+  <h1>全テスト結果</h1>
+  <div class="links">
+    個別に開く：
+    <a href="test_create.html">新規作成</a>
+    <a href="test_create_ui.html">新規作成UI</a>
+    <a href="test_list.html">一覧表示</a>
+    <a href="test_list_ui.html">一覧表示UI</a>
+    <a href="test_edit.html">編集・保存</a>
+    <a href="test_edit_ui.html">編集UI</a>
+    <a href="test_delete.html">削除</a>
+    <a href="test_delete_ui.html">削除UI</a>
+  </div>
+  <div id="output"></div>
+  <div id="summary"></div>
+
+  <!-- UIテスト用 DOM -->
+  <div id="app">
+    <ul id="memo-list"></ul>
+    <div id="editor-placeholder"></div>
+    <div id="editor-area">
+      <input id="title-input" type="text">
+      <textarea id="body-input"></textarea>
+    </div>
+  </div>
+
+<script src="../app.js"></script>
+<script src="../ui.js"></script>
+<script src="test_runner.js"></script>
+<script>
+  function setup() {
+    memos = [];
+    currentId = null;
+    localStorage.removeItem('memos');
+    document.getElementById('memo-list').innerHTML = '';
+    document.getElementById('editor-placeholder').style.display = '';
+    document.getElementById('editor-area').style.display = 'none';
+    document.getElementById('title-input').value = '';
+    document.getElementById('body-input').value = '';
+  }
+</script>
+
+<!-- ロジックテスト -->
+<script src="cases/cases_create.js"></script>
+<script src="cases/cases_list.js"></script>
+<script src="cases/cases_edit.js"></script>
+<script src="cases/cases_delete.js"></script>
+
+<!-- UIテスト -->
+<script src="cases/cases_create_ui.js"></script>
+<script src="cases/cases_list_ui.js"></script>
+<script src="cases/cases_edit_ui.js"></script>
+<script src="cases/cases_delete_ui.js"></script>
+
+<script>showSummary(); localStorage.removeItem('memos');</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>テスト：メモの一覧表示</title>
+  <style>
+    body { font-family: monospace; padding: 24px; background: #1e1e1e; color: #ccc; }
+    h1 { color: #fff; margin-bottom: 8px; }
+    .back { color: #4a90d9; font-size: 13px; display: block; margin-bottom: 16px; }
+    h2 { color: #aaa; margin: 24px 0 8px; font-size: 14px; text-transform: uppercase; }
+    .pass { color: #4ec94e; }
+    .fail { color: #e55; }
+    #summary { margin-top: 24px; font-size: 16px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>テスト：メモの一覧表示</h1>
+  <a class="back" href="test.html">← テスト一覧に戻る</a>
+  <div id="output"></div>
+  <div id="summary"></div>
+
+<script src="../app.js"></script>
+<script src="test_runner.js"></script>
+<script src="cases/cases_list.js"></script>
+<script>showSummary();</script>
+</body>
+</html>
