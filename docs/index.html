@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メモアプリ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      height: 100vh;
+    }
+
+    #sidebar {
+      width: 260px;
+      background: #2c2c2c;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    #sidebar-header {
+      padding: 20px 16px 12px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid #444;
+    }
+
+    #new-btn {
+      margin: 12px;
+      padding: 10px;
+      background: #4a90d9;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #new-btn:hover { background: #357abd; }
+
+    #memo-list {
+      flex: 1;
+      overflow-y: auto;
+      list-style: none;
+    }
+
+    #memo-list li {
+      padding: 12px 16px;
+      border-bottom: 1px solid #3a3a3a;
+      font-size: 14px;
+      color: #ccc;
+      cursor: pointer;
+    }
+    #memo-list li:hover { background: #3a3a3a; }
+    #memo-list li.active { background: #4a4a4a; }
+
+    .memo-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .memo-date {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .delete-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px 4px;
+      display: none;
+    }
+    #memo-list li:hover .delete-btn { display: block; }
+    .delete-btn:hover { color: #e55; }
+
+    #memo-list li { position: relative; }
+
+    #editor {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    #editor-placeholder {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    #editor-area {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+    }
+
+    #title-input {
+      font-size: 22px;
+      font-weight: bold;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      padding: 8px 0;
+      margin-bottom: 16px;
+      background: transparent;
+      outline: none;
+      color: #222;
+    }
+
+    #body-input {
+      flex: 1;
+      font-size: 15px;
+      line-height: 1.7;
+      border: none;
+      background: transparent;
+      outline: none;
+      resize: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">メモ</div>
+  <button id="new-btn">+ 新規メモ</button>
+  <ul id="memo-list"></ul>
+</div>
+
+<div id="editor">
+  <div id="editor-placeholder">メモを選択するか、新規作成してください</div>
+  <div id="editor-area">
+    <input id="title-input" type="text" placeholder="タイトル">
+    <textarea id="body-input" placeholder="メモを入力..."></textarea>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="ui.js"></script>
+<script>
+  document.getElementById('new-btn').addEventListener('click', onNewMemo);
+  document.getElementById('title-input').addEventListener('input', onInput);
+  document.getElementById('body-input').addEventListener('input', onInput);
+
+  renderList();
+</script>
+</body>
+</html>
