@@ -44,3 +44,7 @@ my_1st_project/
   README.md    # 本ファイル
 ```
 
+## 関連テキスト
+
+- [Claude Code と一緒にメモアプリを TDD で作った話](https://qiita.com/y_catch/items/3f273fd7fa7dc3d48fe9)
+
